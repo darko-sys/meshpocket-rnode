@@ -51,6 +51,15 @@ Or: `make firmware-heltec_meshpocket`. Output under `build/Heltec_nRF52.Heltec_n
 - Heltec — MeshPocket hardware
 - Contributors exploring MeshPocket RNode support in the threads linked above
 
+## Repositories (private for now)
+
+| Repo | Contents |
+|------|----------|
+| https://github.com/darko-sys/meshpocket-rnode | Docs, UF2 releases, this meta-repo |
+| https://github.com/darko-sys/RNode_Firmware_CE-meshpocket | Firmware (`meshpocket-support`), based on CE |
+
+When public: open a PR to [liberatedsystems/RNode_Firmware_CE](https://github.com/liberatedsystems/RNode_Firmware_CE) using [UPSTREAM_PR.md](UPSTREAM_PR.md).
+
 ## License
 
 GPL-3.0 — see [LICENSE](LICENSE) and [NOTICE](NOTICE).
