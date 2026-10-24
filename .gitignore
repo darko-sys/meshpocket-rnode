@@ -1,0 +1,2 @@
+﻿# Build intermediates (keep dist/*.uf2 for flashing)
+RNode_Firmware_CE/build/
