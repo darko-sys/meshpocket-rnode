@@ -13,8 +13,8 @@ Related community threads: [Reticulum #887](https://github.com/markqvist/Reticul
 | USB KISS / Reticulum | Works |
 | LoRa EU 865.2 MHz @ 14 dBm, SF8, BW125, CR5 | Works |
 | E-ink status UI | Works |
-| BLE advertising / pairing | Experimental — Android Sideband often flaky; prefer USB |
-| Windows Sideband `ble://` | Avoid — can crash the app |
+| **BLE + Sideband (Android)** | **Priority** — see [FLASH.md](FLASH.md); flash latest UF2 |
+| Windows Sideband `ble://` | Avoid — desktop Sideband often hard-crashes; use USB on PC |
 
 ## Quick start
 
