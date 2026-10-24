@@ -1,2 +1,35 @@
-﻿# Build intermediates (keep dist/*.uf2 for flashing)
+﻿# Build intermediates
 RNode_Firmware_CE/build/
+bringup_blink/build/
+**/*.elf
+**/*.map
+**/*.hex
+!dist/meshpocket_rnode_868.uf2
+
+# Nested firmware has its own git — ignore local CE build noise
+RNode_Firmware_CE/.vscode/
+RNode_Firmware_CE/.idea/
+
+# Do not ship Meshtastic / third-party erase tooling
+dist/Meshtastic_nRF52_factory_erase_*.uf2
+dist/meshtastic-*/
+dist/meshtastic-fw/
+dist/firmware-nrf52840.zip
+dist/meshpocket_bringup.uf2
+dist/meshpocket_rnode_868_dfu.zip
+dist/meshpocket_rnode_868.hex
+
+# OS / editor
+Thumbs.db
+Desktop.ini
+.DS_Store
+*.swp
+.vscode/
+.idea/
+
+# Local secrets / machine config
+.env
+*.pem
+
+bringup_blink/
+

@@ -1,0 +1,27 @@
+MeshPocket RNode (this repository)
+==================================
+
+Copyright contributors to this MeshPocket board-support effort.
+
+This project includes and modifies RNode Firmware Community Edition
+and related materials. It is free software under the GNU General Public
+License version 3 (see LICENSE).
+
+Upstream and related projects
+-----------------------------
+
+- RNode / Reticulum — Mark Qvist (https://github.com/markqvist)
+- RNode Firmware CE — Liberated Embedded Systems
+  https://github.com/liberatedsystems/RNode_Firmware_CE
+- Heltec MeshPocket hardware — Heltec Automation
+
+This distribution is an independent community port. It is not endorsed
+by Heltec, Mark Qvist, or Liberated Embedded Systems unless stated by
+those parties.
+
+Firmware binaries
+-----------------
+
+Prebuilt UF2 images in dist/ (or GitHub Releases) are built from the
+GPL-3 sources in RNode_Firmware_CE/ under the same license. Corresponding
+source is included in this repository.
