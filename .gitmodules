@@ -1,4 +1,4 @@
-﻿[submodule "RNode_Firmware_CE"]
+[submodule "RNode_Firmware_CE"]
 	path = RNode_Firmware_CE
 	url = https://github.com/darko-sys/RNode_Firmware_CE-meshpocket.git
 	branch = meshpocket-support
