@@ -34,7 +34,7 @@ Ziel: Sideband auf dem Handy per BLE, ohne USB-Host.
 
 ### Pairing
 
-1. MeshPocket neu starten (oder USER länger halten). Nach Boot ~**90 s** Pairing; **PIN auf dem E-Ink**.
+1. MeshPocket neu starten (oder **3× USER**). Nach Boot ~**90 s** Auto-Pairing; **PIN groß auf dem E-Ink**.
 2. Sideband → Hardware → RNode:
    - Frequenz **865200000**, BW **125000**, TX **14**, SF **8**, CR **5**
    - **Connect using Bluetooth** + **Device requires BLE** an
@@ -42,12 +42,14 @@ Ziel: Sideband auf dem Handy per BLE, ohne USB-Host.
 3. Nach erfolgreichem Bond trennt das RNode kurz (normal) und wirbt erneut — Sideband verbindet als **bereits gepaartes** Gerät.
 4. Connectivity → **Connect via RNode** an → Sideband **komplett** neu starten (Menü → Shutdown).
 
-USER-Taste:
+USER-Taste (Klick-Kombinationen, Fenster ~0,5 s — kein Long-Press):
 
 | Aktion | Effekt |
 |--------|--------|
-| Kurz | Bluetooth an/aus |
-| ~2 s halten | Pairing (neue PIN, alte Bonds auf dem Gerät gelöscht) |
+| 1× | Bluetooth an/aus (Icon rechts) |
+| 2× | LoRa an/aus (braucht ggf. vorher Host-Radio-Config) |
+| 3× | Pairing / neue PIN |
+| 4× | Soft-Sleep: Splash auf E-Ink, dann SYSTEMOFF; Wake = USER |
 
 ### Windows Sideband + BLE
 
