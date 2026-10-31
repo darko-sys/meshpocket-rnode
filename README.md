@@ -1,25 +1,41 @@
 # MeshPocket + RNode (Reticulum)
 
-Community board support that turns a **Heltec MeshPocket** into an **RNode** (LoRa modem for [Reticulum](https://reticulum.network/)). The network stack runs on your PC or phone; this firmware drives the radio, e-ink status UI, and optional BLE link.
+Community board support that turns a **Heltec MeshPocket** into an **RNode** (LoRa modem for [Reticulum](https://reticulum.network/)). The network stack runs on a host (PC, phone, Pi); this firmware drives the radio, e-ink status UI, BLE link, and deep sleep.
 
 This is **not** an official Heltec, Mark Qvist, or Liberated Systems product. It is a derivative of [RNode Firmware CE](https://github.com/liberatedsystems/RNode_Firmware_CE) (GPL-3). Upstream Mark Qvist’s RNode repo does not accept new hardware PRs; CE does.
 
 Related community threads: [Reticulum #887](https://github.com/markqvist/Reticulum/discussions/887), [CE #87](https://github.com/liberatedsystems/RNode_Firmware_CE/pull/87).
 
-## Status
+## Focus
+
+Primary work is **Heltec MeshPocket firmware** (USB + BLE RNode, e-ink, sleep, battery). Companion apps (Sideband, custom clients) are secondary: they consume a working RNode; they are not the product.
+
+## Status (interim)
 
 | Feature | State |
 |---------|--------|
-| USB KISS / Reticulum | Works |
-| LoRa EU 865.2 MHz @ 14 dBm, SF8, BW125, CR5 | Works |
-| E-ink status UI | Works |
-| **BLE + Sideband (Android)** | **Priority** — see [FLASH.md](FLASH.md); flash latest UF2 |
-| Windows Sideband `ble://` | Avoid — desktop Sideband often hard-crashes; use USB on PC |
+| USB KISS / Reticulum | **Proven** |
+| BLE NUS / KISS (Windows `bleak` / `rns`) | **Proven** (bond + encrypted NUS) |
+| LoRa air path (two MeshPockets: USB host ↔ BLE host on one PC) | **Proven** — bidirectional LXMF dummy messages |
+| Radio baseline after boot | EU **869.525 MHz**, BW 125 kHz, SF8, CR6, TX 14 dBm |
+| E-ink status + battery bars (ADC) | Works |
+| USER hold UX (RNode-compatible) + airplane `SYSTEMOFF` | Works |
+| Stock Sideband on Android (esp. Xiaomi) | **Unreliable so far** — often pairs but does not stay **connected**; may be phone/OS/app, not the MeshPocket |
+
+### Call for testers (Sideband)
+
+If you have **stock Sideband** on a **non-Xiaomi** Android (Pixel/Graphene, Samsung, …) or iOS:
+
+1. Flash the UF2 from [`dist/`](dist/) (see [FLASH.md](FLASH.md)).
+2. Radio: **869.525** MHz / 125 kHz / SF8 / CR6 / 14 dBm, **Device requires BLE**.
+3. Report whether the MeshPocket e-ink shows BLE **connected** (not only system “paired”), and whether announces/messages reach a second RNode (USB PC or another phone).
+
+That feedback separates “MeshPocket BLE broken” from “this phone/Sideband stack is flaky”.
 
 ## Quick start
 
 1. Read **[FLASH.md](FLASH.md)** — magnetic USB cable, double-tap RST, copy `dist/meshpocket_rnode_868.uf2`.
-2. Point Reticulum at the COM port (see FLASH.md). Keys are `spreadingfactor` / `codingrate` (not `spreading_factor`).
+2. Point Reticulum at the COM port or `ble://…` (PC: prefer USB for Sideband Desktop; BLE via `rns`/`bleak` is fine). Config keys are `spreadingfactor` / `codingrate`.
 
 ## Repo layout
 

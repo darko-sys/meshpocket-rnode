@@ -21,65 +21,63 @@ Kein Meshtastic-Factory-Erase nötig.
 
 Wenn nach dem Flash nichts kommt: SoftDevice in `INFO_UF2.TXT` prüfen (typisch **6.1.x**).
 
-## 3. BLE zuerst (Priorität)
+Optional: [`tools/watch_uf2_flash.ps1`](tools/watch_uf2_flash.ps1) wartet auf `HT-n5262` und kopiert die UF2 automatisch.
 
-Ziel: Sideband auf dem Handy per BLE, ohne USB-Host.
+## 3. USER-Taste (Hold wie RNode)
 
-### Vor dem Pairing
-
-- **USB-Serial am PC schließen** (Sideband/Windows/`rnsd` aus) — RNode = ein Host gleichzeitig.
-- Auf dem Handy: alte „RNode …“-Einträge unter Bluetooth **vergessen**.
-- Sideband: Nearby Devices + **Standort** erlauben.
-- **Nicht** zuerst in den Android-System-Bluetooth-Einstellungen koppeln — Pairing läuft **in Sideband**.
-
-### Pairing
-
-1. MeshPocket neu starten (oder **3× USER**). Nach Boot ~**90 s** Auto-Pairing; **PIN groß auf dem E-Ink**.
-2. Sideband → Hardware → RNode:
-   - Frequenz **865200000**, BW **125000**, TX **14**, SF **8**, CR **5**
-   - **Connect using Bluetooth** + **Device requires BLE** an
-   - **Pair New Device** → Gerät wählen → PIN eingeben
-3. Nach erfolgreichem Bond trennt das RNode kurz (normal) und wirbt erneut — Sideband verbindet als **bereits gepaartes** Gerät.
-4. Connectivity → **Connect via RNode** an → Sideband **komplett** neu starten (Menü → Shutdown).
-
-USER-Taste (Klick-Kombinationen, Fenster ~0,5 s — kein Long-Press):
+Dauer bis Loslassen:
 
 | Aktion | Effekt |
 |--------|--------|
-| 1× | Bluetooth an/aus (Icon rechts) |
-| 2× | LoRa an/aus (braucht ggf. vorher Host-Radio-Config) |
-| 3× | Pairing / neue PIN |
-| 4× | Soft-Sleep: Splash auf E-Ink, dann SYSTEMOFF; Wake = USER |
+| kurz tippen | Bluetooth an/aus |
+| halten ≈ 0,7 s+ | **Airplane sleep**: LoRa+BLE aus → E-Ink „AIRPLANE“ → nRF `SYSTEMOFF`; Wake = USER (voller Boot, wieder BLE+LoRa an mit EU-Defaults) |
+| halten ≈ 5 s+ | Pairing / neue PIN auf dem E-Ink |
 
-### Windows Sideband + BLE
+Boot-Baseline (RAM-EEPROM): BLE an, LoRa an, **869.525 MHz / 125 kHz / SF8 / CR6 / 14 dBm**. Host überschreibt Parameter beim Connect.
 
-**`port = ble://…` in `~\.reticulum\config` lässt Sideband Desktop oft hart abstürzen** — das ist ein Host-/Stack-Problem, nicht „Android only“.
+## 4. Host am PC (empfohlen zum Validieren)
 
-Für den PC:
-
-- Sideband am PC weiter über **USB** (`port = COM…`) nutzen, **oder**
-- BLE am PC nur mit `rns`/`bleak` testen, nicht mit Sideband Desktop.
-
-Handy-BLE und PC-USB nicht parallel auf demselben MeshPocket.
-
-## 4. USB / Reticulum (Fallback & PC)
+### USB
 
 ```ini
 [[MeshPocket RNode]]
   type = RNodeInterface
   enabled = True
   port = COMx
-  frequency = 865200000
+  frequency = 869525000
   bandwidth = 125000
   txpower = 14
   spreadingfactor = 8
-  codingrate = 5
+  codingrate = 6
 ```
 
 EU: **max. 14 dBm**. Prüfen: `rnodeconf COMx -i`
 
-Optional MeshPocket-IDs in lokalem `rnodeconf`: [`tools/patch_rnodeconf_meshpocket.py`](tools/patch_rnodeconf_meshpocket.py).
+### BLE (ohne Sideband Desktop)
 
-## 5. Build-Hinweis (SPI)
+Windows Sideband mit `port = ble://…` oft **Absturz** — BLE am PC mit `rns` / `bleak` testen. Nach dem Bond (PIN vom E-Ink) ist NUS/KISS nutzbar.
+
+Zwei MeshPockets: einer USB, einer BLE → getrennte Reticulum-Instanzen beweisen den **LoRa-Luftpfad** (Announce + LXMF).
+
+Handy-BLE und PC-USB nicht parallel auf dem **selben** MeshPocket.
+
+## 5. Sideband auf dem Handy (Best-effort)
+
+Zwischenstand: auf getesteten **Xiaomi**-Geräten oft nur „gepaired“, E-Ink zeigt kein stabiles **connected**. Die MeshPocket-Firmware ist per PC-BLE nachgewiesen; der Bruch liegt vermutlich bei Phone/OS/Sideband.
+
+Bitte mit **stock Sideband** auf anderen Phones nachstellen (siehe [README](README.md) Call for testers).
+
+Kurzchecklist, falls du es trotzdem versuchst:
+
+1. System-Bluetooth: alte „RNode …“-Bonds **vergessen**.
+2. Sideband: Nearby Devices + Standort; **Device requires BLE**.
+3. Frequenz im UI als **869.525** (MHz), nicht die volle Hz-Zahl.
+4. Pairing: MeshPocket ~5 s Hold → PIN → in Sideband pairen; nach Bond kurz disconnect (normal), dann reconnect.
+5. Connectivity → **Connect via RNode** → Sideband komplett neu starten.
+6. Erfolgskriterium: E-Ink **connected**, nicht nur Android „paired“.
+
+## 6. Build-Hinweis (SPI)
 
 Falls der Build die falsche AVR-`SPI`-/`Wire`-Lib zieht: Ordner in `Documents\Arduino\libraries` umbenennen (`SPI_AVR_CONFLICT_DISABLED`, `Wire_AVR_CONFLICT_DISABLED`).
+
+Optional MeshPocket-IDs in lokalem `rnodeconf`: [`tools/patch_rnodeconf_meshpocket.py`](tools/patch_rnodeconf_meshpocket.py).
