@@ -30,6 +30,12 @@ Desktop.ini
 # Local secrets / machine config
 .env
 *.pem
+tools/_last_pin.txt
+dist/last_ble_debug.txt
+
+# Local checkouts — never publish companion app / RNS trees from this meta-repo
+Sideband/
+Reticulum/
 
 bringup_blink/
 

@@ -4,7 +4,7 @@ Community board support that turns a **Heltec MeshPocket** into an **RNode** (Lo
 
 This is **not** an official Heltec, Mark Qvist, or Liberated Systems product. It is a derivative of [RNode Firmware CE](https://github.com/liberatedsystems/RNode_Firmware_CE) (GPL-3). Upstream Mark Qvist’s RNode repo does not accept new hardware PRs; CE does.
 
-Related community threads: [Reticulum #887](https://github.com/markqvist/Reticulum/discussions/887), [CE #87](https://github.com/liberatedsystems/RNode_Firmware_CE/pull/87).
+Related community work: [Reticulum discussion #887](https://github.com/markqvist/Reticulum/discussions/887) and open CE PR [#87 (TheBeadster)](https://github.com/liberatedsystems/RNode_Firmware_CE/pull/87) — early MeshPocket board support (same product IDs). This repo is a separate, ongoing port with BLE/USB validation notes; it is **not** merged upstream CE yet.
 
 ## Focus
 
