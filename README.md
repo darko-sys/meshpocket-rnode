@@ -71,14 +71,16 @@ Or: `make firmware-heltec_meshpocket`. Output under `build/Heltec_nRF52.Heltec_n
 - Heltec — MeshPocket hardware
 - Contributors exploring MeshPocket RNode support in the threads linked above
 
-## Repositories (public)
+## Repositories
 
-| Repo | Contents |
-|------|----------|
-| https://github.com/darko-sys/meshpocket-rnode | Docs, UF2 releases, test tools (this meta-repo) |
-| https://github.com/darko-sys/RNode_Firmware_CE-meshpocket | Firmware (`meshpocket-support`), based on CE |
+| Repo | Role |
+|------|------|
+| https://github.com/darko-sys/meshpocket-rnode | **Canonical** — docs, UF2, test tools (this meta-repo) |
+| https://github.com/darko-sys/RNode_Firmware_CE | GitHub **fork** of CE — branch `pr/heltec-meshpocket` for upstream |
+| https://github.com/liberatedsystems/RNode_Firmware_CE/pull/132 | Open CE pull request |
+| https://github.com/darko-sys/RNode_Firmware_CE-meshpocket | **Archived** earlier working copy (same IDs); use the fork + this meta-repo instead |
 
-Next step toward upstream: open a PR to [liberatedsystems/RNode_Firmware_CE](https://github.com/liberatedsystems/RNode_Firmware_CE) using [UPSTREAM_PR.md](UPSTREAM_PR.md).
+Optional / secondary: `darko-sys/Sideband` fork keeps an experimental `meshpocket-support` BLE branch; not required for the proven PC/`rns` path.
 
 ## License
 
