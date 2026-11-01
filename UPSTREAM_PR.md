@@ -1,7 +1,13 @@
 # Upstream PR notes (liberatedsystems / RNode_Firmware_CE)
 
-Public forks already exist (`darko-sys/meshpocket-rnode`,
-`darko-sys/RNode_Firmware_CE-meshpocket`). Open the CE PR against
+Public repos: `darko-sys/meshpocket-rnode`, `darko-sys/RNode_Firmware_CE-meshpocket`,
+and GitHub fork `darko-sys/RNode_Firmware_CE`.
+
+**Opened:** [CE PR #132](https://github.com/liberatedsystems/RNode_Firmware_CE/pull/132)
+(`pr/heltec-meshpocket`, squashed). Credits open [CE #87](https://github.com/liberatedsystems/RNode_Firmware_CE/pull/87)
+(TheBeadster) for the shared product/model IDs.
+
+Upstream target is always
 https://github.com/liberatedsystems/RNode_Firmware_CE (not markqvist/RNode_Firmware —
 new hardware is directed to CE).
 
