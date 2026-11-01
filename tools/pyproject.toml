@@ -1,0 +1,13 @@
+[project]
+name = "meshpocket-tools"
+version = "0.1.0"
+description = "Local helper scripts for MeshPocket BLE / LXMF / rnodeconf"
+requires-python = ">=3.13"
+dependencies = [
+    "rns>=1.2.0",
+    "lxmf>=0.9.6",
+    "bleak",
+]
+
+[tool.uv]
+package = false

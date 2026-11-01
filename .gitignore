@@ -39,3 +39,6 @@ Reticulum/
 
 bringup_blink/
 
+
+.venv/
+
