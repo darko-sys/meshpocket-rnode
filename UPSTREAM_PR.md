@@ -1,6 +1,7 @@
 # Upstream PR notes (liberatedsystems / RNode_Firmware_CE)
 
-When this work is ready to go public, open a PR against
+Public forks already exist (`darko-sys/meshpocket-rnode`,
+`darko-sys/RNode_Firmware_CE-meshpocket`). Open the CE PR against
 https://github.com/liberatedsystems/RNode_Firmware_CE (not markqvist/RNode_Firmware —
 new hardware is directed to CE).
 
@@ -26,7 +27,8 @@ Add Heltec MeshPocket board support (EU 868, e-ink, BLE)
 - [ ] `rnodeconf COMx -i` shows product `d2:ce:46` (or equivalent)
 - [ ] Reticulum `RNodeInterface` Up at 869525000 / 125000 / 14 / SF8 / CR6 (USB)
 - [ ] BLE: Windows bond + NUS/KISS (`bleak`/`rns`); e-ink shows connected under a working host
-- [ ] Two MeshPockets (USB host + BLE host): LoRa announce and LXMF message exchange
+- [x] Two MeshPockets (USB host + BLE host on one PC): LoRa announce and LXMF message exchange
+- [x] Two PCs, each one MeshPocket over BLE only: LoRa LXMF both directions (2026-11-01)
 - [ ] E-ink shows RNode UI + battery; airplane sleep splash; wake via USER
 - [ ] (Community) Stock Sideband on non-Xiaomi phones — report connect vs pair-only
 
@@ -34,6 +36,7 @@ Add Heltec MeshPocket board support (EU 868, e-ink, BLE)
 
 - MeshPocket RNode path is host-driven (official RNode model); on-device settings menu is out of scope.
 - Android Sideband BLE remains flaky on some OEMs; treat USB / PC `rns` BLE as the validation path.
+- Dual-PC procedure: `tools/BLE_LXMF_ZWEI_PCS.md` in the meta-repo.
 - Local `rnodeconf` may need MeshPocket product IDs until `rns` ships them.
 - Related: reticulum discussion #887, CE PR #87 (earlier experimental work).
 ```

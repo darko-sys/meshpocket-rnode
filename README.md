@@ -16,7 +16,8 @@ Primary work is **Heltec MeshPocket firmware** (USB + BLE RNode, e-ink, sleep, b
 |---------|--------|
 | USB KISS / Reticulum | **Proven** |
 | BLE NUS / KISS (Windows `bleak` / `rns`) | **Proven** (bond + encrypted NUS) |
-| LoRa air path (two MeshPockets: USB host ↔ BLE host on one PC) | **Proven** — bidirectional LXMF dummy messages |
+| LoRa air path (two MeshPockets: USB host ↔ BLE host on one PC) | **Proven** — bidirectional LXMF |
+| LoRa air path (two PCs, each one MeshPocket over BLE) | **Proven** — see [tools/BLE_LXMF_ZWEI_PCS.md](tools/BLE_LXMF_ZWEI_PCS.md) |
 | Radio baseline after boot | EU **869.525 MHz**, BW 125 kHz, SF8, CR6, TX 14 dBm |
 | E-ink status + battery bars (ADC) | Works |
 | USER hold UX (RNode-compatible) + airplane `SYSTEMOFF` | Works |
@@ -44,6 +45,9 @@ That feedback separates “MeshPocket BLE broken” from “this phone/Sideband 
 | `RNode_Firmware_CE/` | Firmware sources (branch `meshpocket-support`) |
 | `dist/meshpocket_rnode_868.uf2` | Ready-to-flash EU 868 image |
 | `tools/patch_rnodeconf_meshpocket.py` | Hint/re-apply MeshPocket IDs in local `rnodeconf` after `pip install -U rns` |
+| `tools/ble_lxmf_node.py` | Dual-host LXMF announce/send/receive over one MeshPocket BLE |
+| `tools/ble_lxmf_setup/` | Offline Windows kit (Python 3.13 + wheels) for the second PC |
+| `tools/BLE_LXMF_ZWEI_PCS.md` | Two-PC BLE LoRa test procedure + result |
 | `UPSTREAM_PR.md` | Notes for contributing board support back to CE |
 
 Product / board IDs: `0xD2` / `0xCE` / `0x46` (EU 868 model).
@@ -67,14 +71,14 @@ Or: `make firmware-heltec_meshpocket`. Output under `build/Heltec_nRF52.Heltec_n
 - Heltec — MeshPocket hardware
 - Contributors exploring MeshPocket RNode support in the threads linked above
 
-## Repositories (private for now)
+## Repositories (public)
 
 | Repo | Contents |
 |------|----------|
-| https://github.com/darko-sys/meshpocket-rnode | Docs, UF2 releases, this meta-repo |
+| https://github.com/darko-sys/meshpocket-rnode | Docs, UF2 releases, test tools (this meta-repo) |
 | https://github.com/darko-sys/RNode_Firmware_CE-meshpocket | Firmware (`meshpocket-support`), based on CE |
 
-When public: open a PR to [liberatedsystems/RNode_Firmware_CE](https://github.com/liberatedsystems/RNode_Firmware_CE) using [UPSTREAM_PR.md](UPSTREAM_PR.md).
+Next step toward upstream: open a PR to [liberatedsystems/RNode_Firmware_CE](https://github.com/liberatedsystems/RNode_Firmware_CE) using [UPSTREAM_PR.md](UPSTREAM_PR.md).
 
 ## License
 
